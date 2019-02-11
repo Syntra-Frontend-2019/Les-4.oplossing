@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Boodschappenlijst</h1>
+
+    <ul id="productlist"></ul>
+
+    <input type="text" id="product">
+    <button onclick="toevoegen();">Toevoegen</button>
+    <button onclick="verwijderen();">Verwijderen</button>
+
+    <script>
+        var productInput = document.getElementById("product");
+        var productlist = document.querySelector("#productlist");
+        var products = ["Pompoen", "Peper", "Zout", "Water", "Cola"];
+
+        updateList();
+
+        function toevoegen(){
+            var product = productInput.value;
+            products.push(product);
+
+            updateList();
+        }
+
+        function verwijderen(){
+            var product = productInput.value;
+            //products.push(product);
+            var index_to_remove = products.indexOf(product);
+
+            if(index_to_remove != -1){
+                products.splice(index_to_remove, 1);
+            } else {
+                alert("Product bestaat niet");
+            }
+
+            updateList();
+        }
+
+        function updateList(){
+            var string = "<li>" + products.join("</li><li>") + "</li>";            
+            productlist.innerHTML = string;
+        }
+    
+    </script>
+</body>
+</html>
